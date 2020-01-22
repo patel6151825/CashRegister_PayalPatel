@@ -18,10 +18,12 @@ namespace CashRegister_PayalPatel
         {
             this.StartAmount = _StartAmount;
         }
-        public void DoTransactionLine(IAction operation)
+        public decimal DoTransactionLine(IAction operation)
         {
             TotalAmount=operation.ApplyAction(price,unit);
+            TransactionTotal = StartAmount + TotalAmount;
             Console.WriteLine($"Total Amount is {TotalAmount}");
+            return TransactionTotal;
         }
 
         public void CloseRegister()

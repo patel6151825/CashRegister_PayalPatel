@@ -10,22 +10,17 @@ namespace CashRegister_PayalPatel
     {
         public void ShowMenu()
         {
-            Console.WriteLine("Cash Register");
+            Console.WriteLine("\n\nCash Register");
         }
 
         public void EnterTransactionLine()
         {
-            Console.Write("Enter Product number : ");
+            Console.Write("Enter Product name : ");
             string productName = Convert.ToString(Console.ReadLine());
 
-            Console.Write("Enter Unit Price : ");
-            decimal price = decimal.Parse(Console.ReadLine());
-
-            Console.Write("Enter Number of Units : ");
-            int unit = Convert.ToInt32(Console.ReadLine());
         }
 
-        public void ShowTransactionLine()
+        public IAction ShowTransactionLine()
         {
             IAction operation = new AddTransactionLine();
             Console.WriteLine("\nEnter 1 For Add TransactionLine:");
@@ -51,6 +46,7 @@ namespace CashRegister_PayalPatel
                     Console.WriteLine("Invalid Choice");
                     break;
             }
+            return operation;
         }
     }
 }

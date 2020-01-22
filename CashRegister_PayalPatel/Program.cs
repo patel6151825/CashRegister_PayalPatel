@@ -12,13 +12,26 @@ namespace CashRegister_PayalPatel
         {
             decimal StartAmount = 1000;
             bool yesToContinue = true;
-            CashRegister register = new CashRegister(StartAmount);
             GUI display = new GUI();
             while (yesToContinue)
             {
                 display.ShowMenu();
                 display.EnterTransactionLine();
-                display.ShowTransactionLine();
+
+                Console.Write("Enter Unit Price : ");
+                decimal Price = decimal.Parse(Console.ReadLine());
+
+                Console.Write("Enter Number of Units : ");
+                int Unit = Convert.ToInt32(Console.ReadLine());
+
+                IAction operation=display.ShowTransactionLine();
+                CashRegister register = new CashRegister(StartAmount);
+                register.price = Price;
+                register.unit = Unit;
+
+                decimal TransactionTotal=register.DoTransactionLine(operation);
+                register.StartAmount = TransactionTotal;
+                Console.WriteLine($"Transaction Total Amount is {TransactionTotal}");
                 Console.Write("Continue: Y/N ");
                 var contKey = Console.ReadKey();
                 yesToContinue = ((contKey.Key == ConsoleKey.Y) ? true : false);
