@@ -8,11 +8,13 @@ namespace CashRegister_PayalPatel
 {
     class Program
     {
+        public static decimal FinalTotal;
         static void Main(string[] args)
         {
             decimal StartAmount = 1000;
             bool yesToContinue = true;
             GUI display = new GUI();
+            Console.Write($"Initial Amount is {StartAmount}");
             while (yesToContinue)
             {
                 display.ShowMenu();
@@ -30,13 +32,19 @@ namespace CashRegister_PayalPatel
                 register.unit = Unit;
 
                 decimal TransactionTotal=register.DoTransactionLine(operation);
-                register.StartAmount = TransactionTotal;
-                Console.WriteLine($"Transaction Total Amount is {TransactionTotal}");
+                StartAmount = TransactionTotal;
+                //Console.WriteLine($"Transaction Total Amount is {TransactionTotal}");
                 Console.Write("Continue: Y/N ");
                 var contKey = Console.ReadKey();
                 yesToContinue = ((contKey.Key == ConsoleKey.Y) ? true : false);
+                FinalTotal = TransactionTotal;
+
             }
-            
+            Console.WriteLine("\n---------------------------------------");
+            Console.WriteLine($"Final Total Amount is {FinalTotal} $");
+            Console.WriteLine("---------------------------------------");
+            Console.ReadKey();
+
         }
     }
 }

@@ -22,7 +22,7 @@ namespace CashRegister_PayalPatel
         {
             TotalAmount=operation.ApplyAction(price,unit);
             TransactionTotal = StartAmount + TotalAmount;
-            Console.WriteLine($"Total Amount is {TotalAmount}");
+            Console.WriteLine($"Total Amount For given product is {TotalAmount}");
             return TransactionTotal;
         }
 
